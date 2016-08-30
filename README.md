@@ -1,0 +1,2 @@
+# clinicmanagementsystem
+Healthcare computer system, commonly known as clinic management system, is created to computerize manual operations in clinics. The primary purpose is to digitize patient records so as to make data retrieval easy and efficient. Clinic Management System web application is developed by using PHP &amp; MySql and is designed to automate internal work flows and manage different aspect of a small to medium size medical clinics.
