@@ -1,0 +1,2 @@
+this folder contains the hospital uploded documents such as official letters, departmental docs, etc.
+each department should have a folder with proper permission applied in file system and application level.
