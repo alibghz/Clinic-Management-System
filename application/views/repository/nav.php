@@ -11,7 +11,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
       <li id="navbarLiHome"><?php echo anchor('','<span class="glyphicon glyphicon-home"></span> Home');?></li>
-      <li id="navbarLiReport"><?php echo anchor('report_bug/add','<span class="glyphicon glyphicon-file"></span> Report a Bug',array('onclick'=>"jQuery.get($(this).attr('href'),'',function(data){jQuery('#tmpDiv').html(data);});return false;"));?></li>
+      <!--<li id="navbarLiReport"><?php echo anchor('report_bug/add','<span class="glyphicon glyphicon-file"></span> Report a Bug',array('onclick'=>"jQuery.get($(this).attr('href'),'',function(data){jQuery('#tmpDiv').html(data);});return false;"));?></li>-->
       <?php
         if($this->bitauth->is_admin())
           include_once __DIR__ . '/nav/admin.php';
