@@ -9,7 +9,7 @@ Healthcare computer system, commonly known as clinic management system, is creat
 - X-Ray Management
 
 # Preparation Steps:
-1. You need to create the database. The scripts for the database is in the 'mySqlDb' directory.
+1. You need to create the database. The scripts for the database is in the 'sql' directory.
 2. Change your database configuration in 'application/configs/database.php'.
 3. Now you can browse the web application.
 4. To sign up for a user account, change your browser location to '<yourWebsiteAddress>/account/signup'. Ensure that the first user to register must be of role admin.
