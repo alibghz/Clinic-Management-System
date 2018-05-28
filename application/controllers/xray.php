@@ -376,6 +376,7 @@ class Xray extends CI_Controller {
       return;
     }
     
+    $this->load->model('xray_files');
     if($this->input->post())
     {
       $this->form_validation->set_rules(array(
@@ -387,24 +388,44 @@ class Xray extends CI_Controller {
         //attach photo
         if($_FILES['picture']['tmp_name'])//check if any picture is selected to upload
         {
-          $path='uploads/patient/'.$patient_id.'/xray/';
+          $this->load->model('xray_patient');
+          $this->xray_patient->load($xray_patient_id);
+          $path='uploads/patient/'.$this->xray_patient->patient_id.'/xray/';
           $config['upload_path']='./'.$path;
           $config['file_name']=uniqid().uniqid();
           $config['allowed_types']='gif|jpg|jpeg|png';
           $config['max_size']='1024';
           $this->load->library('upload',$config);
 
-          if(!$this->upload->do_upload('picture'))
+          if($this->upload->do_upload('picture'))
           {
-            $data['error'] = $this->upload->display_errors('<div class="alert alert-danger">','</div>');
-          }else{
             $data['upload_data'] = $this->upload->data();
-            $_POST['picture']=$path.$data['upload_data']['file_name'];
+            $this->xray_files->xray_patient_id=$xray_patient_id;
+            $this->xray_files->upload_date=now();
+            $this->xray_files->path=$path.$data['upload_data']['file_name'];
+            $this->xray_files->memo=$this->input->post('memo');
+            $this->xray_files->save();
+            redirect('xray/details/'.$xray_patient_id);
+          }else{
+            $data['error'] = $this->upload->display_errors('<div class="alert alert-danger">','</div>');
           }
         }
       }
     }
     //load attachments
+    $data['xray_files'] = $this->xray_files->get_by_fkey('xray_patient_id', $xray_patient_id, 'asc', null);
+    $data['xray_patient_id']=$xray_patient_id;
+    $data['title']='Xray Details';
+    $path='xray/details';
+    if(isset($_GET['ajax'])&&$_GET['ajax']==true)
+    {
+      $this->load->view($path, $data);
+    }else{
+      $data['includes']=array($path);
+      $this->load->view('header', $data);
+      $this->load->view('index', $data);
+      $this->load->view('footer', $data);
+    }
   }
 
   public function _no_access()
@@ -413,12 +434,12 @@ class Xray extends CI_Controller {
     $path='account/no_access';
     if(isset($_GET['ajax'])&&$_GET['ajax']==true)
     {
-        $this->load->view($path, $data);
+      $this->load->view($path, $data);
     }else{
-        $data['includes']=array($path);
-        $this->load->view('header', $data);
-        $this->load->view('index', $data);
-        $this->load->view('footer', $data);
+      $data['includes']=array($path);
+      $this->load->view('header', $data);
+      $this->load->view('index', $data);
+      $this->load->view('footer', $data);
     }
   }
 }
