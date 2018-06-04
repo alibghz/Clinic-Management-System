@@ -411,21 +411,12 @@ class Xray extends CI_Controller {
           }
         }
       }
-    }
-    //load attachments
+    }    
     $data['xray_files'] = $this->xray_files->get_by_fkey('xray_patient_id', $xray_patient_id, 'asc', null);
     $data['xray_patient_id']=$xray_patient_id;
-    $data['title']='Xray Details';
-    $path='xray/details';
-    if(isset($_GET['ajax'])&&$_GET['ajax']==true)
-    {
-      $this->load->view($path, $data);
-    }else{
-      $data['includes']=array($path);
-      $this->load->view('header', $data);
-      $this->load->view('index', $data);
-      $this->load->view('footer', $data);
-    }
+    $data['title']='Xray Details';    
+    
+    $this->load->view('xray/details', $data);
   }
 
   public function _no_access()

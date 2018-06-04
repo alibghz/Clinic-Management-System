@@ -55,7 +55,7 @@
           });
         }else if($(this).attr('action')=='details'){
           $.get($(this).attr('href'),'',function(data){
-              $('tmpDiv').html(data);
+              $('#tmpDiv').html(data);
           });
         }
       }
