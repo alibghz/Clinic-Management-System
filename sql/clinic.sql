@@ -348,13 +348,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password_last_set` datetime NOT NULL,
   `password_never_expires` tinyint(1) NOT NULL DEFAULT '0',
   `remember_me` varchar(40) NOT NULL,
-  `activation_code` varchar(40) NOT NULL,
+  `activation_code` varchar(40) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
-  `forgot_code` varchar(40) NOT NULL,
-  `forgot_generated` datetime NOT NULL,
+  `forgot_code` varchar(40) DEFAULT NULL,
+  `forgot_generated` datetime DEFAULT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  `last_login` datetime NOT NULL,
-  `last_login_ip` int(10) NOT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `last_login_ip` int(10) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
