@@ -262,7 +262,7 @@ class Account extends CI_Controller
         !isset($_POST['password_never_expires']) ? $_POST['password_never_expires']=0 :'';
   
         if(!$this->bitauth->is_admin()){
-            unset($_POST['active'],$_POST['enabled'],$_POST['password_never_expires'],$_POST['groups[]']);
+            unset($_POST['active'],$_POST['enabled'],$_POST['password_never_expires'],$_POST['groups']);
         }
         //upload picture
         if($_FILES['picture']['tmp_name'])
